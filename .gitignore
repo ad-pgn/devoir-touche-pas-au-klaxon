@@ -1,0 +1,9 @@
+/vendor/
+/node_modules/
+/config/config.local.php
+.env
+*.log
+.phpunit.result.cache
+/public/assets/css/*.css.map
+.vscode/
+Thumbs.db
