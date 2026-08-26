@@ -36,6 +36,24 @@ Les namespaces suivent la norme PSR-4 : `App\` pointe vers `app/` et `Core\`
 vers `core/`. La classe `App\Controller\HomeController` correspond donc au
 fichier `app/Controller/HomeController.php`.
 
+## Installation
+
+### Prérequis
+
+- XAMPP avec PHP 8.2 ou supérieur
+- Composer
+- Les extensions PHP `zip`, `pdo_mysql` et `mbstring` activées dans `php.ini`
+
+### Mise en route
+
+1. Cloner le dépôt dans `C:\xampp\htdocs\`
+2. Installer les dépendances : `composer install`
+3. Démarrer Apache et MySQL depuis le panneau XAMPP
+4. Ouvrir `http://localhost/devoir-touche-pas-au-klaxon/public/`
+
+Le module `mod_rewrite` d'Apache doit être actif : toutes les requêtes sont
+redirigées vers `public/index.php` par le fichier `public/.htaccess`.
+
 ## Statut
 
 Projet en cours de développement.
