@@ -1,0 +1,28 @@
+{
+  "name": "devoir-touche-pas-au-klaxon",
+  "version": "1.0.0",
+  "description": "Application web de covoiturage inter-sites, développée dans le cadre\r de la formation Développeur Web du Centre Européen de Formation.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "css": "sass scss/main.scss public/assets/css/style.css --load-path=node_modules --style=compressed --quiet-deps --silence-deprecation=import,global-builtin,color-functions,if-function",
+    "css:watch": "sass --watch scss/main.scss public/assets/css/style.css --load-path=node_modules --quiet-deps --silence-deprecation=import,global-builtin,color-functions,if-function"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ad-pgn/devoir-touche-pas-au-klaxon.git"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ad-pgn/devoir-touche-pas-au-klaxon/issues"
+  },
+  "homepage": "https://github.com/ad-pgn/devoir-touche-pas-au-klaxon#readme",
+  "devDependencies": {
+    "bootstrap": "^5.3.8",
+    "sass": "^1.103.1"
+  }
+}

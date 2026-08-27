@@ -1,0 +1,73 @@
+// =====================================================================
+// Touche pas au klaxon — Feuille de style principale
+//
+// La palette imposée par le cahier des charges est appliquée en
+// surchargeant les variables de Bootstrap AVANT son import. Changer de
+// palette pour un futur site du Comité d'entreprise ne demandera donc
+// que de modifier les six valeurs ci-dessous.
+// =====================================================================
+
+// ---------------------------------------------------------------------
+// 1. Palette imposée
+// ---------------------------------------------------------------------
+$klaxon-bleu-pale:   #f1f8fc;
+$klaxon-bleu:        #0074c7;
+$klaxon-bleu-fonce:  #00497c;
+$klaxon-ardoise:     #384050;
+$klaxon-rouge:       #cd2c2e;
+$klaxon-vert:        #82b864;
+
+// ---------------------------------------------------------------------
+// 2. Surcharge des variables Bootstrap
+// ---------------------------------------------------------------------
+$primary:   $klaxon-bleu;
+$secondary: $klaxon-bleu-fonce;
+$success:   $klaxon-vert;
+$danger:    $klaxon-rouge;
+$dark:      $klaxon-ardoise;
+$light:     $klaxon-bleu-pale;
+
+$body-bg:   #ffffff;
+$body-color: $klaxon-ardoise;
+
+$border-radius: 0.5rem;
+
+// ---------------------------------------------------------------------
+// 3. Import de Bootstrap
+// ---------------------------------------------------------------------
+@import "bootstrap/scss/bootstrap";
+
+// ---------------------------------------------------------------------
+// 4. Styles propres à l'application
+// ---------------------------------------------------------------------
+.app-header {
+    border: 1px solid $klaxon-ardoise;
+    border-radius: 1rem;
+    padding: 0.75rem 1.5rem;
+    margin: 1rem 0 2rem;
+}
+
+.app-name {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.table-trajets {
+    thead th {
+        background-color: $klaxon-ardoise;
+        color: #ffffff;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    td {
+        text-align: center;
+        vertical-align: middle;
+    }
+}
+
+.app-footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 1rem 0;
+}
