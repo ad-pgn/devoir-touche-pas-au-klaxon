@@ -81,6 +81,22 @@ abstract class Controller
     }
 
     /**
+     * Formate un groupe date-heure en date courte (JJ/MM/AA).
+     */
+    public function date(string $gdh): string
+    {
+        return date('d/m/y', (int) strtotime($gdh));
+    }
+
+    /**
+     * Formate un groupe date-heure en heure (HH:MM).
+     */
+    public function heure(string $gdh): string
+    {
+        return date('H:i', (int) strtotime($gdh));
+    }
+
+    /**
      * Échappe une valeur destinée à être affichée dans du HTML.
      *
      * À utiliser systématiquement dans les templates pour toute donnée
