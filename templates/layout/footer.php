@@ -3,6 +3,6 @@
  * Pied de page de l'application.
  */
 ?>
-<footer class="container">
-    <p>&copy; <?= date('Y') ?> - CENEF - MVC PHP</p>
+<footer class="app-footer">
+    <p class="mb-0">&copy; <?= date('Y') ?> - CENEF - MVC PHP</p>
 </footer>
