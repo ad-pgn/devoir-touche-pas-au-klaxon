@@ -4,6 +4,6 @@
 .env
 *.log
 .phpunit.result.cache
-/public/assets/css/*.css.map
+/public/assets/css/style.css.map
 .vscode/
 Thumbs.db
