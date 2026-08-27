@@ -102,4 +102,61 @@ abstract class Controller
         header('Location: ' . BASE_URL . $path);
         exit;
     }
+
+    /**
+     * Exige qu'un utilisateur soit connecté.
+     *
+     * Redirige vers le formulaire de connexion dans le cas contraire.
+     */
+    protected function requireAuth(): void
+    {
+        if (!Auth::check()) {
+            Flash::error('Vous devez être connecté pour accéder à cette page.');
+            $this->redirect('/connexion');
+        }
+    }
+
+    /**
+     * Exige que l'utilisateur connecté soit administrateur.
+     */
+    protected function requireAdmin(): void
+    {
+        $this->requireAuth();
+
+        if (!Auth::isAdmin()) {
+            Flash::error('Accès réservé à l\'administrateur.');
+            $this->redirect('/');
+        }
+    }
+
+    /**
+     * Exige que l'utilisateur connecté soit l'auteur d'un trajet.
+     */
+    protected function requireOwner(int $utilisateurId): void
+    {
+        $this->requireAuth();
+
+        if (!Auth::owns($utilisateurId)) {
+            Flash::error('Vous ne pouvez modifier que vos propres trajets.');
+            $this->redirect('/');
+        }
+    }
+
+    /**
+     * Retourne l'utilisateur connecté pour les templates.
+     *
+     * @return array<string, mixed>|null
+     */
+    public function utilisateur(): ?array
+    {
+        return Auth::user();
+    }
+
+    /**
+     * Indique aux templates si l'utilisateur connecté est administrateur.
+     */
+    public function estAdmin(): bool
+    {
+        return Auth::isAdmin();
+    }
 }
