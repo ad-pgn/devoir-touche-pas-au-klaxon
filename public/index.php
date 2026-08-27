@@ -15,7 +15,8 @@ define('BASE_URL', rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'])
 
 $router = new Router([
     'base_folder' => str_replace('\\', '/', __DIR__),
-    'namespaces'  => ['controllers' => 'App\\Controller\\'],
+    'paths'       => ['controllers' => dirname(__DIR__) . '/app/Controller'],
+    'namespaces'  => ['controllers' => 'App\\Controller'],
     'debug'       => true,
 ]);
 
