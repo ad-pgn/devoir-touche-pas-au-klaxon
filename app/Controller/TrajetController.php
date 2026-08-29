@@ -114,7 +114,7 @@ final class TrajetController extends Controller
         (new TrajetModel())->delete($id);
 
         Flash::success('Le trajet a été supprimé.');
-        $this->redirect('/');
+        $this->redirect(Auth::isAdmin() ? '/admin/trajets' : '/');
     }
 
     /**

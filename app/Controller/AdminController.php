@@ -215,4 +215,20 @@ final class AdminController extends Controller
 
         return null;
     }
+
+    /**
+     * Liste l'intégralité des trajets pour l'administrateur.
+     *
+     * Contrairement à la page d'accueil, cette liste inclut les trajets
+     * passés et les trajets complets : l'administrateur a accès à toutes
+     * les informations.
+     */
+    public function trajets(): string
+    {
+        $this->requireAdmin();
+
+        return $this->render('admin/trajets', [
+            'trajets' => (new TrajetModel())->findTous(),
+        ]);
+    }
 }

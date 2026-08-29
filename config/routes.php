@@ -27,3 +27,5 @@ $router->post('/admin/agences/creer', 'AdminController@creerAgence');
 $router->get('/admin/agences/:id/modifier', 'AdminController@formulaireModificationAgence');
 $router->post('/admin/agences/:id/modifier', 'AdminController@modifierAgence');
 $router->post('/admin/agences/:id/supprimer', 'AdminController@supprimerAgence');
+
+$router->get('/admin/trajets', 'AdminController@trajets');
