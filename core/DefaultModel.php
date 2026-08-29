@@ -48,13 +48,14 @@ abstract class DefaultModel
     {
         $sql = 'SELECT * FROM ' . $this->table;
 
-        if ($orderBy !== null) {
-            $direction = strtoupper($direction) === 'DESC' ? 'DESC' : 'ASC';
-            $sql .= ' ORDER BY ' . $orderBy . ' ' . $direction;
+        $statement = $this->db->query($sql);
+
+        if ($statement === false) {
+            return [];
         }
 
         /** @var array<int, array<string, mixed>> $rows */
-        $rows = $this->db->query($sql)->fetchAll();
+        $rows = $statement->fetchAll();
 
         return $rows;
     }
@@ -144,8 +145,9 @@ abstract class DefaultModel
      */
     public function count(): int
     {
-        return (int) $this->db->query('SELECT COUNT(*) FROM ' . $this->table)
-                              ->fetchColumn();
+        $statement = $this->db->query('SELECT COUNT(*) FROM ' . $this->table);
+
+        return $statement === false ? 0 : (int) $statement->fetchColumn();
     }
 
     /**

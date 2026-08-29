@@ -54,6 +54,26 @@ fichier `app/Controller/HomeController.php`.
 Le module `mod_rewrite` d'Apache doit être actif : toutes les requêtes sont
 redirigées vers `public/index.php` par le fichier `public/.htaccess`.
 
+## Qualité du code
+
+### Analyse statique
+
+Le code est analysé par PHPStan au **niveau 8 sur 10**, sans erreur.
+
+```bash
+composer phpstan
+```
+
+Le niveau 9 imposerait d'éliminer l'usage de `mixed`, ce qui supposerait
+de remplacer les tableaux associatifs retournés par PDO par des objets
+typés. Ce refactoring n'a pas été retenu : il dépasse le périmètre du
+projet et n'apporterait pas de garantie supplémentaire sur des données
+dont la structure est fixée par le schéma de la base.
+
+Le fichier `phpstan-bootstrap.php` déclare la constante `BASE_URL`,
+définie à l'exécution dans `public/index.php` et donc invisible pour
+l'analyseur statique.
+
 ## Statut
 
 Projet en cours de développement.
