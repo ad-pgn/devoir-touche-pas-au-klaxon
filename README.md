@@ -74,6 +74,25 @@ Le fichier `phpstan-bootstrap.php` déclare la constante `BASE_URL`,
 définie à l'exécution dans `public/index.php` et donc invisible pour
 l'analyseur statique.
 
+### Tests unitaires
+
+Les tests couvrent l'ensemble des opérations d'écriture en base :
+création, modification et suppression des trajets et des agences, ainsi
+que les contraintes de cohérence portées par le schéma.
+
+```bash
+composer test
+```
+
+Les tests s'exécutent sur une base dédiée, `touche_pas_au_klaxon_test`,
+créée automatiquement au lancement à partir de `sql/01_create.sql`. La
+base de l'application n'est jamais touchée.
+
+Le schéma de test est repris du script de création de l'application afin
+qu'il n'existe pas deux définitions de structure susceptibles de
+diverger. Chaque test repart d'un état vierge, ce qui les rend
+indépendants de leur ordre d'exécution.
+
 ## Statut
 
 Projet en cours de développement.
