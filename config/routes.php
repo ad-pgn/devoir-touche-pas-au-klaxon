@@ -13,3 +13,5 @@ $router->post('/trajets/creer', 'TrajetController@creer');
 
 $router->get('/trajets/:id/modifier', 'TrajetController@formulaireModification');
 $router->post('/trajets/:id/modifier', 'TrajetController@modifier');
+
+$router->post('/trajets/:id/supprimer', 'TrajetController@supprimer');

@@ -57,12 +57,16 @@ $connecte = $connecte ?? false;
                                 <?php $icone = 'pencil'; require __DIR__ . '/icones.php'; ?>
                             </a>
 
-                            <a href="<?= BASE_URL ?>/trajets/<?= (int) $trajet['id'] ?>/supprimer"
-                               class="btn btn-link p-0 text-danger"
-                               title="Supprimer"
-                               onclick="return confirm('Supprimer définitivement ce trajet ?');">
-                                <?php $icone = 'trash'; require __DIR__ . '/icones.php'; ?>
-                            </a>
+                            <form method="post"
+                                  action="<?= BASE_URL ?>/trajets/<?= (int) $trajet['id'] ?>/supprimer"
+                                  class="d-inline"
+                                  onsubmit="return confirm('Supprimer définitivement ce trajet ?');">
+                                <button type="submit"
+                                        class="btn btn-link p-0 text-danger align-baseline"
+                                        title="Supprimer">
+                                    <?php $icone = 'trash'; require __DIR__ . '/icones.php'; ?>
+                                </button>
+                            </form>
                         <?php endif; ?>
                     </td>
                 <?php endif; ?>
