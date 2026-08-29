@@ -20,6 +20,9 @@ abstract class Controller
      */
     protected string $templatePath;
 
+    /**
+     * Initialise le chemin racine des templates.
+     */
     public function __construct()
     {
         $this->templatePath = dirname(__DIR__) . '/templates/';

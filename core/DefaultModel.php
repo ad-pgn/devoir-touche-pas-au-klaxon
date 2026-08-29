@@ -31,22 +31,30 @@ abstract class DefaultModel
      */
     protected string $primaryKey = 'id';
 
+    /**
+     * Ouvre la connexion partagée à la base de données.
+     */
     public function __construct()
     {
         $this->db = Database::getInstance();
     }
 
-    /**
+   /**
      * Retourne toutes les lignes de la table.
      *
-     * @param string|null $orderBy Colonne de tri, sans direction.
-     * @param string      $direction ASC ou DESC.
+     * @param string|null $orderBy   Colonne de tri, sans direction.
+     * @param string      $direction Sens du tri, ASC ou DESC.
      *
      * @return array<int, array<string, mixed>>
      */
     public function findAll(?string $orderBy = null, string $direction = 'ASC'): array
     {
         $sql = 'SELECT * FROM ' . $this->table;
+
+        if ($orderBy !== null) {
+            $direction = strtoupper($direction) === 'DESC' ? 'DESC' : 'ASC';
+            $sql .= ' ORDER BY ' . $orderBy . ' ' . $direction;
+        }
 
         $statement = $this->db->query($sql);
 
