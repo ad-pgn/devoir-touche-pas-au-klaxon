@@ -103,6 +103,21 @@ final class TrajetController extends Controller
     }
 
     /**
+     * Supprime un trajet.
+     *
+     * L'accès est restreint à l'auteur du trajet et à l'administrateur.
+     */
+    public function supprimer(int $id): never
+    {
+        $this->trajetExistant($id);
+
+        (new TrajetModel())->delete($id);
+
+        Flash::success('Le trajet a été supprimé.');
+        $this->redirect('/');
+    }
+
+    /**
      * Charge un trajet et vérifie que l'utilisateur a le droit d'y toucher.
      *
      * Interrompt la requête par une redirection si le trajet n'existe pas
