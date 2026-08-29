@@ -61,6 +61,72 @@ final class TrajetController extends Controller
     }
 
     /**
+     * Affiche le formulaire de modification d'un trajet.
+     */
+    public function formulaireModification(int $id): string
+    {
+        $trajet = $this->trajetExistant($id);
+
+        return $this->render('trajet/formulaire', [
+            'agences' => (new AgenceModel())->findAllTriees(),
+            'trajet'  => $trajet,
+            'erreurs' => [],
+            'action'  => BASE_URL . '/trajets/' . $id . '/modifier',
+            'titre'   => 'Modifier le trajet',
+        ]);
+    }
+
+    /**
+     * Enregistre les modifications apportées à un trajet.
+     */
+    public function modifier(int $id): string
+    {
+        $this->trajetExistant($id);
+
+        $donnees   = $this->extraireDonnees();
+        $validator = $this->valider($donnees, $id);
+
+        if (!$validator->estValide()) {
+            return $this->render('trajet/formulaire', [
+                'agences' => (new AgenceModel())->findAllTriees(),
+                'trajet'  => $donnees,
+                'erreurs' => $validator->erreurs(),
+                'action'  => BASE_URL . '/trajets/' . $id . '/modifier',
+                'titre'   => 'Modifier le trajet',
+            ]);
+        }
+
+        (new TrajetModel())->update($id, $donnees);
+
+        Flash::success('Le trajet a été modifié.');
+        $this->redirect('/');
+    }
+
+    /**
+     * Charge un trajet et vérifie que l'utilisateur a le droit d'y toucher.
+     *
+     * Interrompt la requête par une redirection si le trajet n'existe pas
+     * ou si l'utilisateur n'en est pas l'auteur.
+     *
+     * @return array<string, mixed>
+     */
+    private function trajetExistant(int $id): array
+    {
+        $this->requireAuth();
+
+        $trajet = (new TrajetModel())->findDetail($id);
+
+        if ($trajet === null) {
+            Flash::error('Ce trajet n\'existe pas.');
+            $this->redirect('/');
+        }
+
+        $this->requireOwner((int) $trajet['utilisateur_id']);
+
+        return $trajet;
+    }
+
+    /**
      * Retourne un trajet vierge servant à initialiser le formulaire.
      *
      * @return array<string, mixed>
@@ -98,8 +164,10 @@ final class TrajetController extends Controller
      * Applique les contrôles de cohérence exigés par le cahier des charges.
      *
      * @param array<string, mixed> $donnees
+     * @param int|null $idModifie Identifiant du trajet en cours de
+     *                            modification, null lors d'une création.
      */
-    private function valider(array $donnees): Validator
+    private function valider(array $donnees, ?int $idModifie = null): Validator
     {
         $validator = new Validator();
 
@@ -125,7 +193,7 @@ final class TrajetController extends Controller
         );
 
         $validator->verifier(
-            $depart !== false && $depart > time(),
+            $depart !== false && ($idModifie !== null || $depart > time()),
             'gdh_depart',
             'La date de départ doit être postérieure à maintenant.'
         );
