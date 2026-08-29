@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * Point d'entrée unique de l'application.
+ *
+ * Toutes les requêtes sont redirigées ici par public/.htaccess. Ce
+ * fichier initialise l'autoload, calcule le préfixe d'URL, configure le
+ * routeur puis lui délègue le traitement de la requête.
+ */
+
 declare(strict_types=1);
 
 use Buki\Router\Router;
