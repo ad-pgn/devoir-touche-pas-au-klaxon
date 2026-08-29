@@ -31,4 +31,19 @@ final class AdminController extends Controller
             'nbTrajets'      => (new TrajetModel())->count(),
         ]);
     }
+
+    /**
+     * Liste les utilisateurs de l'application.
+     *
+     * Consultation uniquement : les employés proviennent du système RH
+     * et ne sont ni créés, ni modifiés, ni supprimés par l'application.
+     */
+    public function utilisateurs(): string
+    {
+        $this->requireAdmin();
+
+        return $this->render('admin/utilisateurs', [
+            'utilisateurs' => (new UserModel())->findAllTries(),
+        ]);
+    }
 }
