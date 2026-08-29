@@ -17,3 +17,4 @@ $router->post('/trajets/:id/modifier', 'TrajetController@modifier');
 $router->post('/trajets/:id/supprimer', 'TrajetController@supprimer');
 
 $router->get('/admin', 'AdminController@index');
+$router->get('/admin/utilisateurs', 'AdminController@utilisateurs');

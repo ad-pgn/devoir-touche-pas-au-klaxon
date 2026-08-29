@@ -14,7 +14,7 @@
 
 $connecte = $connecte ?? false;
 ?>
-<table class="table table-striped table-trajets align-middle">
+<table class="table table-striped table-app align-middle">
     <thead>
         <tr>
             <th>Départ</th>
