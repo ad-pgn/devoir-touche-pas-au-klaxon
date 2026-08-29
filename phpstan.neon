@@ -1,0 +1,16 @@
+parameters:
+    level: 8
+
+    paths:
+        - app
+        - core
+        - config
+        - public
+
+    excludePaths:
+        - vendor
+        - node_modules
+
+    # Constante définie dans public/index.php au démarrage de l'application
+    bootstrapFiles:
+        - phpstan-bootstrap.php
