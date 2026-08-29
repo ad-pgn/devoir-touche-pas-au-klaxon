@@ -10,3 +10,6 @@ $router->get('/deconnexion', 'AuthController@deconnexion');
 
 $router->get('/trajets/creer', 'TrajetController@formulaireCreation');
 $router->post('/trajets/creer', 'TrajetController@creer');
+
+$router->get('/trajets/:id/modifier', 'TrajetController@formulaireModification');
+$router->post('/trajets/:id/modifier', 'TrajetController@modifier');
