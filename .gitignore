@@ -7,3 +7,4 @@
 /public/assets/css/style.css.map
 .vscode/
 Thumbs.db
+.phpunit.cache/

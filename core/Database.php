@@ -45,6 +45,19 @@ final class Database
     }
 
     /**
+     * Remplace la connexion partagée.
+     *
+     * Destinée aux tests unitaires : elle permet de faire pointer
+     * l'ensemble des modèles vers la base de test sans modifier la
+     * configuration de l'application. Passer null réinitialise le
+     * singleton, la prochaine demande rouvrant une connexion normale.
+     */
+    public static function useConnection(?PDO $pdo): void
+    {
+        self::$instance = $pdo;
+    }
+
+    /**
      * Ouvre la connexion PDO à partir des paramètres de configuration.
      *
      * @param array<string, string|int> $db Paramètres de connexion.
