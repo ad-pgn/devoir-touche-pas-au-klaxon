@@ -1,0 +1,5 @@
+# Normalisation automatique des fins de ligne
+* text=auto
+
+# Fichiers générés par la compilation Sass : conservés en LF
+public/assets/css/style.css text eol=lf

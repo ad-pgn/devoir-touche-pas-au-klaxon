@@ -46,4 +46,16 @@ final class AdminController extends Controller
             'utilisateurs' => (new UserModel())->findAllTries(),
         ]);
     }
+
+    /**
+     * Liste les agences et donne accès à leur gestion.
+     */
+    public function agences(): string
+    {
+        $this->requireAdmin();
+
+        return $this->render('admin/agences', [
+            'agences' => (new AgenceModel())->findAllTriees(),
+        ]);
+    }
 }
